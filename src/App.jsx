@@ -54,13 +54,32 @@ function AnimationCanvas() {
   }, []);
 
   useFrame(({ camera }, delta) => {
-    if (keyMap.current["KeyA"]) {
-      camera.position.x -= 1 * delta;
+    const movementSpeed = 5;
+
+    const moveForward = new THREE.Vector3(0, 0, -1);
+    const moveRight = new THREE.Vector3(1, 0, 0);
+    const moveLeft = new THREE.Vector3(-1, 0, 0);
+
+    const rotation = new THREE.Euler(0, camera.rotation.y, 0);
+    moveForward.applyEuler(rotation);
+    moveRight.applyEuler(rotation);
+    moveLeft.applyEuler(rotation);
+
+    if (keyMap.current["ArrowDown"]) {
+      camera.position.y -= movementSpeed * delta;
     }
-    if (keyMap.current["KeyD"]) {
-      camera.position.x += 1 * delta;
+    if (keyMap.current["ArrowUp"]) {
+      camera.position.x += moveForward.x * movementSpeed * delta;
+      camera.position.z += moveForward.z * movementSpeed * delta;
     }
-    // Add more conditions for other movement directions if needed
+    if (keyMap.current["ArrowRight"]) {
+      camera.position.x += moveRight.x * movementSpeed * delta;
+      camera.position.z += moveRight.z * movementSpeed * delta;
+    }
+    if (keyMap.current["ArrowLeft"]) {
+      camera.position.x += moveLeft.x * movementSpeed * delta;
+      camera.position.z += moveLeft.z * movementSpeed * delta;
+    }
   });
 
   return (
@@ -73,11 +92,7 @@ function AnimationCanvas() {
 function App() {
   return (
     <div className="anim">
-      <Canvas
-        colorManagement={false}
-        camera={{ position: [100, 5, 100], fov: 75 }}
-        tabIndex={0}
-      >
+      <Canvas camera={{ position: [100, 5, 100], fov: 75 }} tabIndex={0}>
         <ambientLight intensity={0.3} />
         <directionalLight position={[1, 1, 1]} intensity={2} />
         <AnimationCanvas />
