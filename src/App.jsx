@@ -4,6 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import Island from "./models/Island";
+import { Sky } from "@react-three/drei";
 
 extend({ OrbitControls });
 
@@ -54,7 +55,7 @@ function AnimationCanvas() {
   }, []);
 
   useFrame(({ camera }, delta) => {
-    const movementSpeed = 5;
+    const movementSpeed = 15;
 
     const moveForward = new THREE.Vector3(0, 0, -1);
     const moveRight = new THREE.Vector3(1, 0, 0);
@@ -69,8 +70,7 @@ function AnimationCanvas() {
       camera.position.y -= movementSpeed * delta;
     }
     if (keyMap.current["ArrowUp"]) {
-      camera.position.x += moveForward.x * movementSpeed * delta;
-      camera.position.z += moveForward.z * movementSpeed * delta;
+      camera.position.y += movementSpeed * delta;
     }
     if (keyMap.current["ArrowRight"]) {
       camera.position.x += moveRight.x * movementSpeed * delta;
@@ -80,10 +80,15 @@ function AnimationCanvas() {
       camera.position.x += moveLeft.x * movementSpeed * delta;
       camera.position.z += moveLeft.z * movementSpeed * delta;
     }
+    if (keyMap.current["Space"]) {
+      camera.position.x += moveForward.x * movementSpeed * delta;
+      camera.position.z += moveForward.z * movementSpeed * delta;
+    }
   });
 
   return (
     <group ref={groupRef}>
+      <Sky />
       <Island />
     </group>
   );
