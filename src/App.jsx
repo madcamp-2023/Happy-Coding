@@ -2,9 +2,10 @@ import "./App.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Canvas, extend, useThree, useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Island from "./models/Island";
 import { Sky } from "@react-three/drei";
+import Hogwarts from "./models/Hogwarts";
 
 extend({ OrbitControls });
 
@@ -29,10 +30,14 @@ function CameraControls() {
   return null;
 }
 
+// ... (imports)
+
 function AnimationCanvas() {
   const keyMap = useRef({});
-
   const groupRef = useRef();
+  const [initialCameraPosition, setInitialCameraPosition] = useState([
+    0, 100, 0,
+  ]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -53,7 +58,7 @@ function AnimationCanvas() {
   }, []);
 
   useFrame(({ camera }, delta) => {
-    const movementSpeed = 15;
+    const movementSpeed = 5;
     const rotationSpeed = 1;
 
     const moveForward = new THREE.Vector3(0, 0, -1);
@@ -69,25 +74,15 @@ function AnimationCanvas() {
     if (keyMap.current["ArrowDown"]) {
       console.log(camera.rotation);
       camera.rotation.x -= rotationSpeed * delta;
-      // camera.rotation.z -= rotationSpeed * delta;
-
-      // camera.position.y -= movementSpeed * delta;
     }
     if (keyMap.current["ArrowUp"]) {
       camera.rotation.x += rotationSpeed * delta;
-      // camera.rotation.z += rotationSpeed * delta;
     }
     if (keyMap.current["ArrowRight"]) {
       camera.rotation.y -= rotationSpeed * delta;
-
-      // camera.position.x += moveRight.x * movementSpeed * delta;
-      // camera.position.z += moveRight.z * movementSpeed * delta;
     }
     if (keyMap.current["ArrowLeft"]) {
       camera.rotation.y += rotationSpeed * delta;
-
-      // camera.position.x += moveLeft.x * movementSpeed * delta;
-      // camera.position.z += moveLeft.z * movementSpeed * delta;
     }
     if (keyMap.current["Space"]) {
       camera.position.x += moveForward.x * movementSpeed * delta;
@@ -99,7 +94,9 @@ function AnimationCanvas() {
   return (
     <group ref={groupRef}>
       <Sky />
-      <Island />
+      <Hogwarts />
+      {/* Set initial camera position */}
+      <perspectiveCamera position={initialCameraPosition} fov={75} />
     </group>
   );
 }
