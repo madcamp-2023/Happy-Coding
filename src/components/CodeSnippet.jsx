@@ -1,8 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Box } from "@react-three/drei";
-import { TextureLoader } from "three";
 import * as THREE from "three";
-import useSound from "use-sound";
 import a from "../assets/music/a.mp3";
 import aSharp from "../assets/music/a_sharp.mp3";
 import b from "../assets/music/b.mp3";
@@ -17,8 +15,8 @@ import g from "../assets/music/g.mp3";
 import gSharp from "../assets/music/g_sharp.mp3";
 import cUp from "../assets/music/c_up.mp3";
 
+/* Calculate soundSrc based on length and maxCodeLength */
 function useDynamicSound(length, maxCodeLength) {
-  // Calculate soundSrc based on length and maxCodeLength
   let soundSrc = c;
   if (length < maxCodeLength / 13) {
     soundSrc = c;
@@ -47,22 +45,15 @@ function useDynamicSound(length, maxCodeLength) {
   } else {
     soundSrc = cUp;
   }
-
   return soundSrc;
 }
 
 function CodeSnippet({ code, length, idx, maxCodeLength }) {
-  const texture = new TextureLoader().load("");
+  // const texture = new TextureLoader().load("");
   const boxMeshRef = useRef();
   const soundSrc = useDynamicSound(length, maxCodeLength);
   const audio = new Audio(soundSrc);
   audio.loop = true;
-
-  const handlePointerOver = () => {
-    console.log("hover!");
-    //    play();
-  };
-
   return (
     <>
       <Box
@@ -79,14 +70,14 @@ function CodeSnippet({ code, length, idx, maxCodeLength }) {
       >
         <meshStandardMaterial
           attach="material"
-          color={"white"}
+          color={"#000000"}
           side={THREE.BackSide}
         />
         <meshStandardMaterial
           attach="material"
-          color={"white"}
+          color={"#000000"}
           side={THREE.FrontSide}
-          map={texture}
+          // map={texture}
         />
       </Box>
       <mesh position={[0, 0.1, 0]} scale={[6, 0.2, 6]} receiveShadow />

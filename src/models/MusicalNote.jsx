@@ -9,22 +9,30 @@ Title: Musical Notes
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
-export function Note1({ position, rotation }) {
+export function NoteHigh({ position, rotation }) {
   const { nodes, materials } = useGLTF("assets/musical_notes/scene.gltf");
+  const noteRef = useRef();
+  useFrame(() => {
+    noteRef.current.rotation.y += 0.01;
+  });
   return (
-    <group dispose={null}>
-      <mesh
-        geometry={nodes.SM_MusicNote_03_lambert1_0.geometry}
-        material={materials.lambert1}
-        position={position}
-        rotation={rotation}
-      />
-    </group>
+    <mesh
+      geometry={nodes.SM_MusicNote_03_lambert1_0.geometry}
+      material={materials.lambert1}
+      position={position}
+      rotation={rotation}
+      ref={noteRef}
+    />
   );
 }
-export function Note2({ position, rotation }) {
+export function Note4({ position, rotation }) {
   const { nodes, materials } = useGLTF("assets/musical_notes/scene.gltf");
+  const noteRef = useRef();
+  useFrame(() => {
+    noteRef.current.rotation.y += 0.01;
+  });
   return (
     <group dispose={null}>
       <mesh
@@ -33,12 +41,17 @@ export function Note2({ position, rotation }) {
         position={position}
         rotation={rotation}
         scale={2.532}
+        ref={noteRef}
       />
     </group>
   );
 }
-export function Note3({ position, rotation = [0, 0, 0] }) {
+export function Note8({ position, rotation = [0, 0, 0] }) {
   const { nodes, materials } = useGLTF("assets/musical_notes/scene.gltf");
+  const noteRef = useRef();
+  useFrame(() => {
+    noteRef.current.rotation.y += 0.01;
+  });
   return (
     <group dispose={null}>
       <mesh
@@ -47,6 +60,7 @@ export function Note3({ position, rotation = [0, 0, 0] }) {
         position={position}
         rotatio={rotation}
         scale={1.514}
+        ref={noteRef}
       />
     </group>
   );
