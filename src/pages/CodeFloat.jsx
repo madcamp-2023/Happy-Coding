@@ -14,8 +14,10 @@ export default function CodeFloat({ code }) {
         <Environment background preset="dawn" blur={0.8} />
         <Note1 position={[50, 30, -80]} rotation={[0, 1, 0]} />
         <Note1 position={[-100, -300, -800]} rotation={[0, 0, 1]} />
-        <Note2 position={[-30, -30, 0]} rotation={[0.1, 0.4, 0]} />
+        <Note1 position={[-400, 100, 400]} rotation={[0, 0, 1]} />
+        <Note2 position={[-50, -50, 0]} rotation={[0.1, 0.4, 0]} />
         <Note2 position={[0, 300, 400]} rotation={[-0.1, 0, 0]} />
+        <Note2 position={[300, -200, 400]} rotation={[-0.1, 0, 0]} />
         <Note3 position={[100, -50, 200]} rotation={[0, -1, 0]} />
         <Note3 position={[200, 100, -600]} rotation={[0, 1, -1]} />
         <OrbitControls />
