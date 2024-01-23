@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, Html, OrbitControls } from "@react-three/drei";
 import CodeColumn from "../components/CodeColumn";
 import { NoteHigh, Note4, Note8 } from "../models/MusicalNote";
 import * as THREE from "three";
-import { Bubble } from "../models/Bubble";
 import SideNavigation from "../components/SideNavigation";
+import styles from "./CodeFloat.module.css";
 
 function Scene({ code }) {
   const [initialCameraPosition, setInitialCameraPosition] = useState([
@@ -65,7 +65,10 @@ function Scene({ code }) {
 
 export default function CodeFloat({ code }) {
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className={styles.CodeFloat}>
+      <div className={styles.SideNavigationOverlay}>
+        <SideNavigation before={"/codetree"} next={"/codedomino"} />
+      </div>
       <Canvas
         camera={{
           position: [0, 0, 50],
