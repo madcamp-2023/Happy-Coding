@@ -24,6 +24,7 @@
     "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "three": "^0.160.0",
+    "three-to-cannon": "^5.0.1",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },

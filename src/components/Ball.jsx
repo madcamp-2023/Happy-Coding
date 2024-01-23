@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useSphere } from "@react-three/cannon";
+import { threeToCannon, ShapeType } from "three-to-cannon";
 import {
   BeachBall,
   SoccerBall,
@@ -22,7 +23,7 @@ function useDynamicBall(length, maxCodeLength, idx) {
   } else if (length < (maxCodeLength / 7) * 4) {
     return <TennisBall />;
   } else if (length < (maxCodeLength / 7) * 5) {
-    return <FootBall />;
+    return <BowlingBall />;
   } else if (length < (maxCodeLength / 7) * 6) {
     return <BasketBall />;
   } else {
@@ -31,17 +32,17 @@ function useDynamicBall(length, maxCodeLength, idx) {
 }
 
 export default function Ball({ length, idx, maxCodeLength }) {
-  const radius = 1; // Adjust the radius of the ball
-  const [position, setPosition] = useState([0, 20 + idx * 5, 0]); // Initial position
-  const [ref, api] = useSphere(() => ({
-    type: "Sphere",
-    args: [radius],
-    mass: 1, // Adjust the mass of the ball
-    position: [0, 20 + idx * 5, 0], // Initial position
-  }));
-
+  // const [ref, api] = useSphere(() => ({
+  //   type: "Sphere",
+  //   args: [radius],
+  //   mass: 1, // Adjust the mass of the ball
+  //   position: [0, 20 + idx * 5, 0], // Initial position
+  // }));
+  // const model = useDynamicBall(length, maxCodeLength, idx)
+  // const result = threeToCannon(model, {type: ShapeType.SPHERE})
+  const [ref] = useSphere(() => ({ mass: 1, position: [0, 100, 0] }));
   return (
-    <mesh ref={ref} castShadow receiveShadow frustumCulled={false}>
+    <mesh ref={ref} castShadow receiveShadow>
       {useDynamicBall(length, maxCodeLength, idx)}
     </mesh>
   );
