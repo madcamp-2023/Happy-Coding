@@ -67,7 +67,7 @@ export default function CodeFloat({ code }) {
   return (
     <div className={styles.CodeFloat}>
       <div className={styles.SideNavigationOverlay}>
-        <SideNavigation before={"/codetree"} next={"/codedomino"} />
+        <SideNavigation before={"/codetree"} next={"/codeball"} />
       </div>
       <Canvas
         camera={{
