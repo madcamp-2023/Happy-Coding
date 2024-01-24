@@ -31,7 +31,7 @@ export default function CodeBall({ code }) {
       <Canvas
         shadows
         gl={{ stencil: false, antialias: false }}
-        camera={{ position: [200, 100, 100], fov: 50, near: 0.1, far: 1000 }}
+        camera={{ position: [0, 200, 0], fov: 50, near: 0.1, far: 1000 }}
       >
         <pointLight position={[100, 100, 100]} intensity={100} castShadow />
         <Environment background preset="park" blur={0.8} />

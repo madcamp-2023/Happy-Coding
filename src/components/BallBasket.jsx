@@ -1,26 +1,28 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { Physics, usePlane, useSphere } from "@react-three/cannon";
-import { Environment, OrbitControls } from "@react-three/drei";
-import { BallCollider, RigidBody } from "@react-three/rapier";
+import React from "react";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { usePlane } from "@react-three/cannon";
 
-function Plane({ position, rotation, size }) {
-  // Use usePlane to create a physics plane
+function Plane({ position, rotation, size, isFloor = false }) {
   const [ref] = usePlane(() => ({ type: "Static", position, rotation }));
+  const woodTexture = useLoader(TextureLoader, "assets/grassTexture.jpg");
 
-  return (
-    <>
-      <mesh ref={ref} receiveShadow>
-        <planeGeometry args={size} />
-        <meshStandardMaterial color="brown" />
-      </mesh>
-    </>
+  return !isFloor ? (
+    <mesh ref={ref} receiveShadow>
+      <planeGeometry args={size} />
+      <meshStandardMaterial map={woodTexture} />
+    </mesh>
+  ) : (
+    <mesh ref={ref} receiveShadow>
+      <planeGeometry args={size} />
+      <meshStandardMaterial map={woodTexture} />
+    </mesh>
   );
 }
 
 export default function BallBasket() {
   const planeProps = [
-    { position: [0, 0, 0], rotation: [-Math.PI / 2, 0, 0], size: [500, 500] },
+    // { position: [0, 0, 0], rotation: [-Math.PI / 2, 0, 0], size: [500, 500] },
     {
       position: [-250, 250, 0],
       rotation: [0, Math.PI / 2, 0],
@@ -40,6 +42,12 @@ export default function BallBasket() {
       {planeProps.map((props, index) => (
         <Plane key={index} {...props} />
       ))}
+      <Plane
+        position={[0, 0, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        size={[500, 500]}
+        isFloor
+      />
     </>
   );
 }
