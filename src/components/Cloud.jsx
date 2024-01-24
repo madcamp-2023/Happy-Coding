@@ -5,19 +5,27 @@ Command: npx gltfjsx@6.2.16 public/assets/_cloud.glb
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from 'react-three-fiber';
 
-export function Cloud(color, props) {
+export function Cloud({color, position, scale}) {
   const { nodes, materials } = useGLTF('/assets/_cloud.glb')
+  const cloudMaterial = materials.lambert2SG.clone()
 
-  materials.lambert2SG.color.set("purple");
+  if(color){
+    cloudMaterial.color.set(color)
+  }
+
+  materials.lambert2SG.transparent = true
+  materials.lambert2SG.opacity = 0.5
+  
+
 
   return (
-    <group {...props} dispose={null}>
+    <group position = {position} scale = {scale} dispose={null}>
       <mesh 
-      geometry={nodes.Node.geometry} 
-      material={materials.lambert2SG} 
-      position = {[-2,-1,-2]}
+      geometry={nodes.Node.geometry}
+      material = {cloudMaterial}
+      // material={materials.lambert2SG} 
+      // position = {[-2,-1,-2]}
       />
       
     </group>
