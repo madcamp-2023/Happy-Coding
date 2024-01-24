@@ -1,10 +1,7 @@
 import React from "react";
-import CodeSnippet from "./CodeSnippet.jsx";
-import { useLocation } from "react-router-dom";
 import Ball from "./Ball.jsx";
 
 export default function Balls() {
-  const location = useLocation();
   const code = localStorage.getItem("code");
   const codeLines = code ? code.split("\n") : [];
   const codeRes = codeLines.map((line) => ({

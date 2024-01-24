@@ -77,7 +77,6 @@ function CodeSnippet({ length, idx, maxCodeLength }) {
           attach="material"
           color={"#000000"}
           side={THREE.FrontSide}
-          // map={texture}
         />
       </Box>
       <mesh position={[0, 0.1, 0]} scale={[6, 0.2, 6]} receiveShadow />
