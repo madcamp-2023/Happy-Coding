@@ -12,29 +12,39 @@ function Scene() {
     <group position={[0, 0, 0]}>
       <Balls />
       <BallBasket />
-      <perspectiveCamera
-        position={[0, 20, 50]}
+      {/* <perspectiveCamera
+        makeDefault
+        position={[0, 250, 0]}
         near={0.1}
         far={5000}
         aspect={window.innerWidth / window.innerHeight}
-      />
+      /> */}
     </group>
   );
 }
 
-export default function CodeBall({ code }) {
+export default function CodeBall() {
   return (
     <div className={styles.CodeFloat}>
       <div className={styles.SideNavigationOverlay}>
-        <SideNavigation before={"/codefloat"} next={"/codetree"} />
+        <SideNavigation
+          before={"/codefloat"}
+          next={"/codetree"}
+          color="#043927"
+        />
       </div>
       <Canvas
         shadows
         gl={{ stencil: false, antialias: false }}
-        camera={{ position: [200, 100, 100], fov: 50, near: 0.1, far: 1000 }}
+        camera={{
+          position: [250, 200, 250],
+          fov: 50,
+          near: 0.1,
+          far: 1000,
+        }}
       >
         <pointLight position={[100, 100, 100]} intensity={100} castShadow />
-        <Environment background preset="park" blur={0.8} />
+        <Environment background preset="park" blur={0.1} />
         <Physics>
           <Scene />
         </Physics>

@@ -9,23 +9,27 @@ Title: Balls
 
 import React, { useState, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useThree, useFrame } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useSphere } from "@react-three/cannon";
-import { RigidBody, BallCollider } from "@react-three/rapier";
+import * as THREE from "three";
+
+const randomSign = () => (THREE.MathUtils.randInt(0, 1) === 0 ? -1 : 1);
 
 export function BeachBall({ position = [0, 0, 0] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
   const [ref, api] = useSphere(() => ({
     mass: 15, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -20, 0],
-    args: [66],
+    gravity: [0, -1000, 0],
+    args: [76],
   }));
   const [isHovered, setHover] = useState(false);
-
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (
@@ -67,13 +71,16 @@ export function SoccerBall({ position = [72.532, 0, -1.391] }) {
   const [ref, api] = useSphere(() => ({
     mass: 30, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -80, 0],
+    gravity: [0, -1000, 0],
     args: [20],
   }));
   const [isHovered, setHover] = useState(false);
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (
@@ -105,16 +112,18 @@ export function SoccerBall({ position = [72.532, 0, -1.391] }) {
 export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
   const [ref, api] = useSphere(() => ({
-    mass: 80, // Adjust the mass of the ball
+    mass: 30, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -80, 0],
+    gravity: [0, -1000, 0],
     args: [21],
   }));
   const [isHovered, setHover] = useState(false);
-
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (
@@ -146,15 +155,18 @@ export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
 export function TennisBall({ position = [98.432, 0, -26.27] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
   const [ref, api] = useSphere(() => ({
-    mass: 50, // Adjust the mass of the ball
+    mass: 15, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -70, 0],
+    gravity: [0, -1000, 0],
     args: [6],
   }));
   const [isHovered, setHover] = useState(false);
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (
@@ -186,15 +198,18 @@ export function TennisBall({ position = [98.432, 0, -26.27] }) {
 export function BaseBall({ position = [94.175, 0, -14.348] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
   const [ref, api] = useSphere(() => ({
-    mass: 40, // Adjust the mass of the ball
+    mass: 15, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -50, 0],
-    args: [6],
+    gravity: [0, -1000, 0],
+    args: [8],
   }));
   const [isHovered, setHover] = useState(false);
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (
@@ -226,15 +241,18 @@ export function BaseBall({ position = [94.175, 0, -14.348] }) {
 export function VolleyBall({ position = [42.508, 0, -37.848] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
   const [ref, api] = useSphere(() => ({
-    mass: 100, // Adjust the mass of the ball
+    mass: 30, // Adjust the mass of the ball
     position, // Initial position of the ball
-    gravity: [0, -70, 0],
+    gravity: [0, -1000, 0],
     args: [18],
   }));
   const [isHovered, setHover] = useState(false);
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
-      api.applyImpulse([0, 50, -50], position);
+      api.applyImpulse([randomX, randomY, randomZ], position);
     }
   });
   return (

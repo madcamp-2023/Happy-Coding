@@ -32,21 +32,6 @@ function useDynamicBall(length, maxCodeLength, idx) {
   } else {
     return <BeachBall position={[randomX, randomY, randomZ]} />;
   }
-  // if (length < maxCodeLength / 7) {
-  //   return <TennisBall />;
-  // } else if (length < (maxCodeLength / 7) * 2) {
-  //   return <BaseBall />;
-  // } else if (length < (maxCodeLength / 7) * 3) {
-  //   return <VolleyBall />;
-  // } else if (length < (maxCodeLength / 7) * 4) {
-  //   return <TennisBall />;
-  // } else if (length < (maxCodeLength / 7) * 5) {
-  //   return <SoccerBall />;
-  // } else if (length < (maxCodeLength / 7) * 6) {
-  //   return <BasketBall />;
-  // } else {
-  //   return <BeachBall />;
-  // }
 }
 
 export default function Ball({ length, idx, maxCodeLength }) {
