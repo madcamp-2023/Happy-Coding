@@ -21,7 +21,7 @@ export function BeachBall({ position = [0, 0, 0] }) {
     mass: 15, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -1000, 0],
-    args: [72],
+    args: [76],
   }));
   const [isHovered, setHover] = useState(false);
   const randomX = randomSign() * 5;
