@@ -11,6 +11,7 @@ import React, { useState, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useSphere } from "@react-three/cannon";
+import { RigidBody, BallCollider } from "@react-three/rapier";
 
 export function BeachBall({ position = [0, 0, 0] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
@@ -18,38 +19,27 @@ export function BeachBall({ position = [0, 0, 0] }) {
     mass: 15, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -20, 0],
-    args: [75],
+    args: [66],
   }));
   const [isHovered, setHover] = useState(false);
-  const ballRef = useRef();
 
-  // Use the useFrame hook to update the ball's position based on mouse interaction
-  // useFrame(() => {
-  //   if (ballRef.current && ballRef.current.isHovered) {
-  //     // Adjust the force and direction based on your preference
-  //     const force = 10;
-  //     const direction = [0, 1, 0]; // Apply force in the y-direction
-
-  //     api.applyImpulse(direction.map((d) => d * force));
-  //   }
-  // });
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
-      ref={(mesh) => {
-        ref.current = mesh;
-        ballRef.current = mesh;
-      }}
+      ref={ref}
       rotation={[-0.435, 0.271, -1.922]}
-      scale={40}
+      scale={45}
       castShadow
       receiveShadow
-      onPointerEnter={(event) => {
-        console.log("pointer enter");
-        ballRef.current.isHovered = true;
+      onPointerEnter={() => {
+        setHover(true);
       }}
-      onPointerLeave={(event) => {
-        console.log("pointer leave");
-        ballRef.current.isHovered = false;
+      onPointerLeave={() => {
+        setHover(false);
       }}
     >
       <mesh
@@ -74,12 +64,18 @@ export function BeachBall({ position = [0, 0, 0] }) {
 
 export function SoccerBall({ position = [72.532, 0, -1.391] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 30, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -80, 0],
     args: [20],
   }));
+  const [isHovered, setHover] = useState(false);
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
       ref={ref}
@@ -87,6 +83,12 @@ export function SoccerBall({ position = [72.532, 0, -1.391] }) {
       scale={13.123}
       castShadow
       receiveShadow
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
     >
       <mesh
         geometry={nodes.soccer_ball_black_soccer_0.geometry}
@@ -102,12 +104,19 @@ export function SoccerBall({ position = [72.532, 0, -1.391] }) {
 
 export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 80, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -80, 0],
     args: [21],
   }));
+  const [isHovered, setHover] = useState(false);
+
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
       ref={ref}
@@ -115,6 +124,12 @@ export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
       scale={[14.499, 14.547, 14.499]}
       castShadow
       receiveShadow
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
     >
       <mesh
         geometry={nodes.basket_ball_orange_basket_0.geometry}
@@ -130,12 +145,18 @@ export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
 
 export function TennisBall({ position = [98.432, 0, -26.27] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 50, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -70, 0],
     args: [6],
   }));
+  const [isHovered, setHover] = useState(false);
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
       ref={ref}
@@ -143,6 +164,12 @@ export function TennisBall({ position = [98.432, 0, -26.27] }) {
       scale={3.55}
       castShadow
       receiveShadow
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
     >
       <mesh
         geometry={nodes.tennis_ball_green_tennis_0.geometry}
@@ -158,12 +185,18 @@ export function TennisBall({ position = [98.432, 0, -26.27] }) {
 
 export function BaseBall({ position = [94.175, 0, -14.348] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 40, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -50, 0],
     args: [6],
   }));
+  const [isHovered, setHover] = useState(false);
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
       ref={ref}
@@ -171,6 +204,12 @@ export function BaseBall({ position = [94.175, 0, -14.348] }) {
       scale={0.075}
       castShadow
       receiveShadow
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
     >
       <mesh
         geometry={nodes.baseball_baseball_red_0.geometry}
@@ -186,12 +225,18 @@ export function BaseBall({ position = [94.175, 0, -14.348] }) {
 
 export function VolleyBall({ position = [42.508, 0, -37.848] }) {
   const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-  const [ref] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     mass: 100, // Adjust the mass of the ball
     position, // Initial position of the ball
     gravity: [0, -70, 0],
     args: [18],
   }));
+  const [isHovered, setHover] = useState(false);
+  useFrame(() => {
+    if (ref.current && isHovered) {
+      api.applyImpulse([0, 50, -50], position);
+    }
+  });
   return (
     <mesh
       ref={ref}
@@ -199,6 +244,12 @@ export function VolleyBall({ position = [42.508, 0, -37.848] }) {
       scale={8.032}
       castShadow
       receiveShadow
+      onPointerEnter={() => {
+        setHover(true);
+      }}
+      onPointerLeave={() => {
+        setHover(false);
+      }}
     >
       <mesh
         geometry={nodes.volley_ball_volley_yellow_0.geometry}

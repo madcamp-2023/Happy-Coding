@@ -14,7 +14,7 @@ import {
 
 function useDynamicBall(length, maxCodeLength, idx) {
   const randomX = THREE.MathUtils.randFloatSpread(200);
-  const randomY = THREE.MathUtils.randFloatSpread(50) + 100;
+  const randomY = THREE.MathUtils.randFloatSpread(100) + 150;
   const randomZ = THREE.MathUtils.randFloatSpread(200);
 
   if (length < maxCodeLength / 7) {
