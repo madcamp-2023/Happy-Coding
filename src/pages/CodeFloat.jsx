@@ -63,11 +63,28 @@ function Scene({ code }) {
   );
 }
 
-export default function CodeFloat({ code }) {
+export default function CodeFloat() {
+  const [code, setCode] = useState(null);
+
+  useEffect(() => {
+    // Fetch code from localStorage
+    const storedCode = localStorage.getItem("code");
+
+    // Set the code in state when available
+    if (storedCode) {
+      setCode(storedCode);
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+  if (code === null) {
+    // If code is not available yet, you might want to render a loading state
+    return;
+  }
+
   return (
     <div className={styles.CodeFloat}>
       <div className={styles.SideNavigationOverlay}>
-        <SideNavigation before={"/codetree"} next={"/codedomino"} />
+        <SideNavigation before={"/codetree"} next={"/codeball"} />
       </div>
       <Canvas
         camera={{

@@ -22,7 +22,7 @@ export default function SideNavigation({ before, next }) {
           <NavigateBeforeIcon fontSize="inherit" />
         </IconButton>
       </div>
-      <div classNAme={styles.NavigationNext}>
+      <div className={styles.NavigationNext}>
         <IconButton color="secondary" size="large" onClick={navigateToNext}>
           <NavigateNextIcon fontSize="inherit" />
         </IconButton>

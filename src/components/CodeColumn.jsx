@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CodeSnippet from "./CodeSnippet.jsx";
 import { useLocation } from "react-router-dom";
 
 export default function CodeColumn() {
-  const location = useLocation();
-  const code = location.state ? location.state.code : null;
-  // console.log(code);
+  const [code, setCode] = useState(null);
+
+  useEffect(() => {
+    // Fetch code from localStorage
+    const storedCode = localStorage.getItem("code");
+
+    // Set the code in state when available
+    if (storedCode) {
+      setCode(storedCode);
+    }
+  }, []); // Empty dependency array ensures the effect runs only once on mount
+
+  if (code === null) {
+    // If code is not available yet, you might want to render a loading state
+    return null;
+  }
   const codeLines = code ? code.split("\n") : [];
   const codeRes = codeLines.map((line) => ({
     content: line.trim(),
