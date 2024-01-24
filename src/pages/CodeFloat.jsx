@@ -96,8 +96,16 @@ export default function CodeFloat() {
       >
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
+        <CodeColumn code={code} />
         <Environment background preset="dawn" blur={0.8} />
-        <Scene code={code} />
+        <NoteHigh position={[150, 80, -80]} rotation={[0, 1, 0]} />
+        <NoteHigh position={[-100, -300, -800]} rotation={[0, 0, 1]} />
+        <NoteHigh position={[-400, 100, 400]} rotation={[0, 0, 1]} />
+        <Note4 position={[-50, -50, 0]} rotation={[0.1, 0.4, 0]} />
+        <Note4 position={[0, 300, 400]} rotation={[-0.1, 0, 0]} />
+        <Note4 position={[300, -200, 400]} rotation={[-0.1, 0, 0]} />
+        <Note8 position={[100, -50, 300]} rotation={[0, -1, 0]} />
+        <Note8 position={[200, 100, -600]} rotation={[0, 1, -1]} />
         <OrbitControls />
       </Canvas>
     </div>

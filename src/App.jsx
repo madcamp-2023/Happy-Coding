@@ -4,6 +4,7 @@ import "./App.css";
 import CodeBall from "./pages/CodeBall";
 import CodeFloat from "./pages/CodeFloat";
 import CodeTree from "./pages/CodeTree";
+import Atmos from "./pages/Atmos";
 import Input from "./pages/Input";
 
 export default function App() {
@@ -14,6 +15,8 @@ export default function App() {
         <Route path="/codefloat" element={<CodeFloat />} />
         <Route path="/codetree" element={<CodeTree />} />
         <Route path="/codeball" element={<CodeBall />} />
+        <Route path="/codedomino" element={<CodeDomino />} />
+        <Route path="/atmos" element={<Atmos />} />
         <Route path="/" element={<Navigate to="/input" />} />
       </Routes>
     </BrowserRouter>

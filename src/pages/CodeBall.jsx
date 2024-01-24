@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
-import { Physics, usePlane, useSphere } from "@react-three/cannon";
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import { Physics } from "@react-three/cannon";
 import { Environment, OrbitControls } from "@react-three/drei";
 import SideNavigation from "../components/SideNavigation";
 import styles from "./CodeFloat.module.css";

@@ -266,49 +266,5 @@ export function VolleyBall({ position = [42.508, 0, -37.848] }) {
     </mesh>
   );
 }
-/*
-export function BowlingBall({ props }) {
-  const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-
-  return (
-    <group
-      position={[106.646, 0, -62.317]}
-      rotation={[-Math.PI / 2, 0, 1.298]}
-      scale={[10.835, 10.835, 10.804]}
-    >
-      <mesh
-        geometry={nodes.bowling_ball_bowling_0.geometry}
-        material={materials.bowling}
-      />
-      <mesh
-        geometry={nodes.bowling_ball_holes_0.geometry}
-        material={materials.holes}
-      />
-    </group>
-  );
-}
-*/
-/*
-export function FootBall({ props }) {
-  const { nodes, materials } = useGLTF("/assets/balls/scene.gltf");
-
-  return (
-    <group
-      position={[80.137, 0, -89.852]}
-      rotation={[-Math.PI, 1.141, 2.457]}
-      scale={[8.061, 8.061, 11.357]}
-    >
-      <mesh
-        geometry={nodes.football_football001_0.geometry}
-        material={materials["football.001"]}
-      />
-      <mesh
-        geometry={nodes.football_football_white001_0.geometry}
-        material={materials["football_white.001"]}
-      />
-    </group>
-  );
-}
-*/
 
 useGLTF.preload("/assets/balls/scene.gltf");
