@@ -18,7 +18,7 @@ export default function CodeFloat({ code }) {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <CodeColumn code={code} />
-        <Environment background preset="dawn" blur={0.8} />
+        <Environment background preset = "dawn" blur={0.8} />
         <NoteHigh position={[150, 80, -80]} rotation={[0, 1, 0]} />
         <NoteHigh position={[-100, -300, -800]} rotation={[0, 0, 1]} />
         <NoteHigh position={[-400, 100, 400]} rotation={[0, 0, 1]} />
