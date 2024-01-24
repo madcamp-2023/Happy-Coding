@@ -1,49 +1,54 @@
 import React, { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
-import { useSphere } from "@react-three/cannon";
-import { threeToCannon, ShapeType } from "three-to-cannon";
+import * as THREE from "three";
+
 import {
   BeachBall,
   SoccerBall,
   BasketBall,
   TennisBall,
   BaseBall,
-  BowlingBall,
-  FootBall,
+  // BowlingBall,
+  // FootBall,
   VolleyBall,
 } from "../models/BallModel";
 
 function useDynamicBall(length, maxCodeLength, idx) {
+  const randomX = THREE.MathUtils.randFloatSpread(200);
+  const randomY = THREE.MathUtils.randFloatSpread(50) + 100;
+  const randomZ = THREE.MathUtils.randFloatSpread(200);
+
   if (length < maxCodeLength / 7) {
-    return <TennisBall />;
+    return <TennisBall position={[randomX, randomY, randomZ]} />;
   } else if (length < (maxCodeLength / 7) * 2) {
-    return <BaseBall />;
+    return <BaseBall position={[randomX, randomY, randomZ]} />;
   } else if (length < (maxCodeLength / 7) * 3) {
-    return <VolleyBall />;
+    return <VolleyBall position={[randomX, randomY, randomZ]} />;
   } else if (length < (maxCodeLength / 7) * 4) {
-    return <TennisBall />;
+    return <TennisBall position={[randomX, randomY, randomZ]} />;
   } else if (length < (maxCodeLength / 7) * 5) {
-    return <BowlingBall />;
+    return <SoccerBall position={[randomX, randomY, randomZ]} />;
   } else if (length < (maxCodeLength / 7) * 6) {
-    return <BasketBall />;
+    return <BasketBall position={[randomX, randomY, randomZ]} />;
   } else {
-    return <BeachBall />;
+    return <BeachBall position={[randomX, randomY, randomZ]} />;
   }
+  // if (length < maxCodeLength / 7) {
+  //   return <TennisBall />;
+  // } else if (length < (maxCodeLength / 7) * 2) {
+  //   return <BaseBall />;
+  // } else if (length < (maxCodeLength / 7) * 3) {
+  //   return <VolleyBall />;
+  // } else if (length < (maxCodeLength / 7) * 4) {
+  //   return <TennisBall />;
+  // } else if (length < (maxCodeLength / 7) * 5) {
+  //   return <SoccerBall />;
+  // } else if (length < (maxCodeLength / 7) * 6) {
+  //   return <BasketBall />;
+  // } else {
+  //   return <BeachBall />;
+  // }
 }
 
 export default function Ball({ length, idx, maxCodeLength }) {
-  // const [ref, api] = useSphere(() => ({
-  //   type: "Sphere",
-  //   args: [radius],
-  //   mass: 1, // Adjust the mass of the ball
-  //   position: [0, 20 + idx * 5, 0], // Initial position
-  // }));
-  // const model = useDynamicBall(length, maxCodeLength, idx)
-  // const result = threeToCannon(model, {type: ShapeType.SPHERE})
-  const [ref] = useSphere(() => ({ mass: 1, position: [0, 100, 0] }));
-  return (
-    <mesh ref={ref} castShadow receiveShadow>
-      {useDynamicBall(length, maxCodeLength, idx)}
-    </mesh>
-  );
+  return <>{useDynamicBall(length, maxCodeLength, idx)}</>;
 }

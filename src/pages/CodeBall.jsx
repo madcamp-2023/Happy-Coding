@@ -1,86 +1,73 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { Physics, usePlane, useSphere } from "@react-three/cannon";
 import { Environment, OrbitControls } from "@react-three/drei";
-import * as THREE from "three";
 import SideNavigation from "../components/SideNavigation";
 import styles from "./CodeFloat.module.css";
 import Balls from "../components/Balls";
-// import Borders from "../components/Borders";
-/*
-function Floor(props) {
-  const [ref] = usePlane(() => ({ mass: 0, ...props }), useRef());
 
-  return (
-    <mesh receiveShadow ref={ref}>
-      <planeGeometry args={[100, 100]} />
-      <meshStandardMaterial />
-    </mesh>
-  );
-}
-*/
+function Basket() {
+  // Define the positions, rotations, and sizes of the planes
+  const planeProps = [
+    { position: [0, 0, 0], rotation: [-Math.PI / 2, 0, 0], size: [500, 500] }, // Bottom
+    // {
+    //   position: [0, 500, 0],
+    //   rotation: [-Math.PI / 2, 0, 0],
+    //   size: [500, 500],
+    // }, // Top
+    {
+      position: [-250, 250, 0],
+      rotation: [0, Math.PI / 2, 0],
+      size: [500, 500],
+    }, // Left
+    {
+      position: [250, 250, 0],
+      rotation: [0, -Math.PI / 2, 0],
+      size: [500, 500],
+    }, // Right
+    { position: [0, 250, -250], rotation: [0, 0, 0], size: [500, 500] }, // Front
+    { position: [0, 250, 250], rotation: [0, Math.PI, 0], size: [500, 500] }, // Back
+  ];
 
-function Borders() {
-  const { viewport } = useThree();
   return (
     <>
-      <Plane
-        material-color="white" // Set material-color to "white"
-        position={[0, -viewport.height / 2, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
-      <Plane
-        material-color="white" // Set material-color to "white"
-        position={[-viewport.width / 2 - 1, 0, 0]}
-        rotation={[0, Math.PI / 2, 0]}
-      />
-      <Plane
-        material-color="white" // Set material-color to "white"
-        position={[viewport.width / 2 + 1, 0, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
-      />
-      <Plane
-        material-color="white" // Set material-color to "white"
-        position={[0, 0, -1]}
-        rotation={[0, 0, 0]}
-      />
-      <Plane
-        material-color="white" // Set material-color to "white"
-        position={[0, 0, 12]}
-        rotation={[0, -Math.PI, 0]}
-      />
+      {planeProps.map((props, index) => (
+        <Plane key={index} {...props} />
+      ))}
     </>
+  );
+}
+
+function Plane({ position, rotation, size }) {
+  // Use usePlane to create a physics plane
+  const [ref] = usePlane(() => ({ type: "Static", position, rotation }));
+
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeGeometry args={size} />
+      <meshStandardMaterial color="brown" />
+    </mesh>
   );
 }
 
 function Mouse() {
   const { viewport } = useThree();
   const [, api] = useSphere(() => ({ type: "Kinematic", args: [6] }));
-  return useFrame((state) =>
-    api.position.set(
-      (state.mouse.x * viewport.width) / 2,
-      (state.mouse.y * viewport.height) / 2,
-      7
-    )
-  );
-}
-
-function Plane({ color, ...props }) {
-  usePlane(() => ({ ...props }));
-  return null;
+  return useFrame((state) => {
+    api.position.set(state.mouse.x, state.mouse.y, 0);
+  });
 }
 
 function Scene() {
   return (
     <group position={[0, 0, -10]}>
       <Balls />
-      {/* <Floor rotation={[-Math.PI / 2, 0, 0]} /> */}
-      <Mouse />
-      <Borders />
+      <Basket />
+      {/* <Mouse /> */}
       <perspectiveCamera
-        position={[20, 20, 20]}
+        position={[0, 20, 50]}
         near={0.1}
-        far={1000}
+        far={5000}
         aspect={window.innerWidth / window.innerHeight}
       />
     </group>
@@ -101,10 +88,7 @@ export default function CodeBall({ code }) {
         <ambientLight />
         <pointLight position={[100, 100, 100]} intensity={100} castShadow />
         <Environment background preset="park" blur={0.8} />
-        <Physics
-          gravity={[0, -50, 0]}
-          defaultContactMaterial={{ restitution: 0.5 }}
-        >
+        <Physics gravity={[0, -100, 0]}>
           <Scene />
         </Physics>
         <OrbitControls />
