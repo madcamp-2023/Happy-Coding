@@ -48,7 +48,7 @@ function useDynamicSound(length, maxCodeLength) {
   return soundSrc;
 }
 
-function CodeSnippet({ code, length, idx, maxCodeLength }) {
+function CodeSnippet({ length, idx, maxCodeLength }) {
   // const texture = new TextureLoader().load("");
   const boxMeshRef = useRef();
   const soundSrc = useDynamicSound(length, maxCodeLength);
