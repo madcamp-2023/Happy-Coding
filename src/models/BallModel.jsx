@@ -24,9 +24,9 @@ export function BeachBall({ position = [0, 0, 0] }) {
     args: [72],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
@@ -75,9 +75,9 @@ export function SoccerBall({ position = [72.532, 0, -1.391] }) {
     args: [20],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
@@ -118,9 +118,9 @@ export function BasketBall({ position = [69.604, -0.017, -49.927] }) {
     args: [21],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
@@ -161,9 +161,9 @@ export function TennisBall({ position = [98.432, 0, -26.27] }) {
     args: [6],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
@@ -204,9 +204,9 @@ export function BaseBall({ position = [94.175, 0, -14.348] }) {
     args: [8],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
@@ -247,9 +247,9 @@ export function VolleyBall({ position = [42.508, 0, -37.848] }) {
     args: [18],
   }));
   const [isHovered, setHover] = useState(false);
-  const randomX = randomSign() * 20;
-  const randomY = randomSign() * 10;
-  const randomZ = randomSign() * 20;
+  const randomX = randomSign() * 5;
+  const randomY = 0;
+  const randomZ = randomSign() * 5;
   useFrame(() => {
     if (ref.current && isHovered) {
       api.applyImpulse([randomX, randomY, randomZ], position);
