@@ -3,16 +3,18 @@
 // Command: npx gltfjsx@6.2.16 public/assets/_airplane.glb 
 // */
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from 'react-three-fiber'
+import { useFrame, useThree } from 'react-three-fiber'
+import * as THREE from 'three'
 
 const HELIX_SPEED = 6
 
 export function Airplane(props) {
   const { nodes, materials } = useGLTF('/assets/_airplane.glb')
-
   const helix = useRef()
+  const [target, setTarget] = useState({x:0, y:0})
+  const {camera} = useThree()
 
   useFrame((_state, delta) => {
     helix.current.rotation.x += delta * HELIX_SPEED;
