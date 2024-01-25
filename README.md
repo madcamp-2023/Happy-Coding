@@ -1,4 +1,4 @@
-![code_float](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/f8f445d2-21a7-47e8-8dde-68e73570df37)# Happy Coding with virtual mouse
+# Happy Coding with virtual mouse
 
 
 # Happy Coding
@@ -73,7 +73,7 @@ Madcamp Week2 1분반
 
 ## Flying through Clouds
 ![code_atmos](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/b233d4d6-f35c-4790-82b1-472ff79c1433)
-
+![free_atmos (1)](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/19c63a8a-3028-4685-92e4-79d9997abd29)
 
 ### Major Features
 
@@ -87,8 +87,7 @@ Madcamp Week2 1분반
 - 
 
 ## Rolling Balls
-
-// 이미지
+![code_ball](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/8bcae08a-7696-491a-8a1d-36b031bc84f6)
 
 ### Major Features
 
