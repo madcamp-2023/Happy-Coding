@@ -8,9 +8,6 @@ import Clouds from "./Clouds";
 const LINE_NB_POINTS = 12000;
 
 export default function AtmosScene() {
-  //   const [curveArray, setCurveArray] = useState([]);
-  //   const [linePoints, setLinePoints] = useState([]);
-  const [loading, setLoading] = useState(true); // Introduce loading state
   const cameraGroup = useRef();
   const airplane = useRef();
   const scroll = useScroll();
@@ -28,15 +25,9 @@ export default function AtmosScene() {
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(curveArray, false, "catmullrom", 0.5);
   }, []);
+
   const linePoints = useMemo(() => {
     return curve.getPoints(LINE_NB_POINTS);
-  }, [curve]);
-
-  useMemo(() => {
-    const shape = new THREE.Shape();
-    shape.moveTo(0, -0.2);
-    shape.lineTo(0, 0.2);
-    return shape;
   }, [curve]);
 
   useFrame((_state, delta) => {
@@ -78,43 +69,37 @@ export default function AtmosScene() {
 
   return (
     <>
-      {/* {loading ? ( // Render loading indicator while curveArray is being prepared
-        <></>
-      ) : ( */}
-      <>
-        <group ref={cameraGroup}>
-          <PerspectiveCamera
-            position={[0, 0, 7]}
-            fov={30}
-            near={0.1}
-            far={1000}
-            aspect={window.innerWidth / window.innerHeight}
-            makeDefault
-          />
-          <group ref={airplane}>
-            <Float floatIntensity={2} speed={2}>
-              <Airplane
-                rotation-y={Math.PI / 2}
-                scale={[0.2, 0.2, 0.2]}
-                position-y={0.1}
-              />
-            </Float>
-          </group>
-        </group>
-        <group position-y={-1.5}>
-          {linePoints.length > 0 && (
-            <Line
-              points={linePoints}
-              color={"white"}
-              opacity={0.7}
-              transparent
-              lineWidth={10}
+      <group ref={cameraGroup}>
+        <PerspectiveCamera
+          position={[0, 0, 7]}
+          fov={30}
+          near={0.1}
+          far={1000}
+          aspect={window.innerWidth / window.innerHeight}
+          makeDefault
+        />
+        <group ref={airplane}>
+          <Float floatIntensity={2} speed={2}>
+            <Airplane
+              rotation-y={Math.PI / 2}
+              scale={[0.2, 0.2, 0.2]}
+              position-y={0.1}
             />
-          )}
+          </Float>
         </group>
-        <Clouds curveArray={curveArray} />
-      </>
-      {/* )} */}
+      </group>
+      <group position-y={-1.5}>
+        {linePoints.length > 0 && (
+          <Line
+            points={linePoints}
+            color={"white"}
+            opacity={0.7}
+            transparent
+            lineWidth={10}
+          />
+        )}
+      </group>
+      <Clouds curveArray={curveArray} />
     </>
   );
 }
