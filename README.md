@@ -2,6 +2,7 @@
 
 
 # Happy Coding
+![intro](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/3dfff62d-5edc-401b-903b-abb0236e3dcd)
 
 ## 소스코드를 시각, 청각적으로 볼 수 있는 Happy Coding의 경험을 제공합니다.
 
