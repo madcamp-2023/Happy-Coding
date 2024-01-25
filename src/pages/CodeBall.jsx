@@ -28,7 +28,7 @@ export default function CodeBall() {
     <div className={styles.CodeFloat}>
       <div className={styles.SideNavigationOverlay}>
         <SideNavigation
-          before={"/codeatmos"}
+          before={"/freeatmos"}
           next={"/codefloat"}
           color="#043927"
         />

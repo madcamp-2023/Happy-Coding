@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/codefloat" element={<CodeFloat />} />
         <Route path="/codeball" element={<CodeBall />} />
         <Route path="/codeatmos" element={<CodeAtmos />} />
-        <Route path="/atmos" element={<Atmos />} />
+        <Route path="/freeatmos" element={<Atmos />} />
         <Route path="/" element={<Navigate to="/input" />} />
       </Routes>
     </BrowserRouter>

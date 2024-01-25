@@ -1,14 +1,18 @@
 import {
+  Center,
   Float,
+  Line,
   OrbitControls,
   PerspectiveCamera,
   Text,
+  Text3D,
+  useScroll,
 } from "@react-three/drei";
-import { useEffect, useRef } from "react";
-import { useThree } from "react-three-fiber";
-import InputScene from "./InputScene";
-import ButtonScene from "./ButtonScene";
+import { Airplane } from "./Airplane";
 import CloudModel from "../models/CloudModel";
+import * as THREE from "three";
+import { useEffect, useMemo, useRef } from "react";
+import { useFrame, useThree } from "react-three-fiber";
 
 const getRandomValue = (min, max) => {
   return Math.random() * (max - min) + min;
@@ -60,14 +64,30 @@ const generateRandomClouds = (count) => {
 const LINE_NB_POINTS = 12000;
 
 export const Experience = () => {
-  const code = localStorage.getItem("code");
-  const codeLines = code ? code.split("\n") : [];
-  const codeRes = codeLines.map((line) => ({
-    content: line.trim(),
-    length: line.trim().length,
-  }));
-
   const randomClouds = generateRandomClouds(1000);
+
+  // const curve = useMemo(() => {
+  //     return new THREE.CatmullRomCurve3([
+  //         new THREE.Vector3(0,0,0),
+  //         new THREE.Vector3(0,0,-10),
+  //         new THREE.Vector3(-10,0,-20),
+  //         new THREE.Vector3(0,0,-30),
+  //         new THREE.Vector3(0,10,-40),
+  //         new THREE.Vector3(5,0,-50),
+  //         new THREE.Vector3(6,-10,-60)
+  //     ], false, "catmullrom", 0.5)
+  // }, [])
+
+  // const linePoints = useMemo(() => {
+  //     return curve.getPoints(LINE_NB_POINTS)
+  // }, [curve])
+
+  // const shape = useMemo(() => {
+  //     const shape = new THREE.Shape()
+  //     shape.moveTo(0,-0.2)
+  //     shape.lineTo(0,0.2)
+  //     return shape
+  // }, [curve])
 
   const cameraGroup = useRef();
   const airplane = useRef();
@@ -78,7 +98,7 @@ export const Experience = () => {
     const handleMouseMove = (e) => {
       mouse.current = [
         (e.clientX / size.width) * 2 - 1,
-        -(e.clientY / size.height) * 2 - 1,
+        (e.clientY / size.height) * 2 - 1,
       ];
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -87,33 +107,80 @@ export const Experience = () => {
     };
   }, [size.width, size.height]);
 
+  useFrame(() => {
+    const [x, y] = mouse.current;
+    const targetX = (x * viewport.width) / 2;
+    const targetY = (y * viewport.height) / 2;
+
+    const rotationX = (-(targetY / (viewport.height / 2)) * Math.PI) / 4;
+    const rotationY = (-(targetX / (viewport.width / 2)) * Math.PI) / 4;
+
+    // airplane.current.position.x = targetX;
+    // airplane.current.position.y = targetY;
+    cameraGroup.current.position.x += targetX / 50;
+    console.log(`rotationX: ${rotationX}`);
+    cameraGroup.current.position.y -= targetY / 50;
+    console.log(`rotationY: ${rotationY}`);
+    airplane.current.rotation.x = rotationX;
+    airplane.current.rotation.y = rotationY;
+
+    cameraGroup.current.rotation.copy(airplane.current.rotation);
+    cameraGroup.current.rotation.x = rotationX * 1.2;
+    cameraGroup.current.rotation.y = rotationY * 1.2;
+    cameraGroup.current.position.z -= 0.01;
+    // cameraGroup.current.position.x -= 0.01
+    // cameraGroup.current.position.y -= 0.01
+  });
+
+  // useFrame((_state, delta) => {
+  //     const curPointIndex = Math.min(
+  //         Math.round(scroll.offset * linePoints.length),
+  //         linePoints.length-1
+  //     )
+  //     const curPoint = linePoints[curPointIndex]
+  //     const pointAhead = linePoints[Math.min(curPointIndex + 1, linePoints.length-1)];
+
+  //     const xDisplacement = (pointAhead.x - curPoint.x) * 80
+  //     // MATH.PI / 2 -> LEFT, -MATH.PI / 2 -> RIGHT
+
+  //     const angleRotation = (xDisplacement < 0 ? 1 : -1) * Math.min(Math.abs(xDisplacement), Math.PI / 3)
+  //     const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
+  //         new THREE.Euler(
+  //             airplane.current.rotation.x,
+  //             airplane.current.rotation.y,
+  //             angleRotation,
+  //         )
+  //     )
+
+  //     const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
+  //         new THREE.Euler(
+  //             cameraGroup.current.rotation.x,
+  //             angleRotation,
+  //             cameraGroup.current.rotation.z
+  //         )
+  //     )
+
+  //     airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta*2)
+  //     cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta*2)
+  //     cameraGroup.current.position.lerp(curPoint, delta*24)
+  // })
+
   return (
     <>
-      <OrbitControls enableZoom={false} />
+      {/* <OrbitControls enableZoom = {true} /> */}
       <group ref={cameraGroup}>
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
         <group ref={airplane}>
           <Float floatIntensity={3} speed={0.5}>
-            {randomClouds}
+            <Airplane
+              rotation-y={Math.PI / 2}
+              scale={[0.2, 0.2, 0.2]}
+              position-y={0.1}
+            />
           </Float>
         </group>
       </group>
-      {/* <group position={[0, 0.5, 0]}>
-        <Text
-          color="black"
-          anchorX={"center"}
-          anchorY="middle"
-          fontSize={0.22}
-          maxWidth={5}
-        >
-          Welcome to {"\n"}
-          Happy Coding!
-        </Text>
-      </group>
-      <InputScene />
-      <group position={[0, -0.3, 0]}>
-        <ButtonScene />
-      </group> */}
+      {randomClouds}
     </>
   );
 };

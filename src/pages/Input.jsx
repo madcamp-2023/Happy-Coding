@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import "./Input.css";
-import Atmos from "./Atmos";
+import InputAtmos from "../components/InputAtmos";
 
 export default function Input() {
   const [code, setCode] = useState("");
@@ -46,7 +46,7 @@ export default function Input() {
           </div>
         </div>
       </div>
-      <Atmos />
+      <InputAtmos />
     </div>
   );
 }
