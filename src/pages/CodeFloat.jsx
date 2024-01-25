@@ -29,8 +29,8 @@ function Scene() {
     }
   }, []);
 
-  const curve = useMemo(() => {
-    return new THREE.CatmullRomCurve3(
+  useEffect(() => {
+    const newCurve = new THREE.CatmullRomCurve3(
       [
         new THREE.Vector3(0, 0, 100),
         new THREE.Vector3(totalLength, 5, 100),
@@ -41,7 +41,22 @@ function Scene() {
       "catmullrom",
       0.5
     );
-  }, []);
+    setCurve(newCurve);
+  }, [totalLength]);
+
+  const [curve, setCurve] = useState(
+    new THREE.CatmullRomCurve3(
+      [
+        new THREE.Vector3(0, 0, 100),
+        new THREE.Vector3(totalLength, 5, 100),
+        new THREE.Vector3(totalLength * 1.5, -5, 100),
+        new THREE.Vector3(totalLength * 2, 0, 100),
+      ],
+      false,
+      "catmullrom",
+      0.5
+    )
+  );
 
   const linePoints = useMemo(() => {
     return curve.getPoints(2000);
