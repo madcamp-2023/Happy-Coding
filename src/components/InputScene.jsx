@@ -1,25 +1,25 @@
 import { Canvas } from "react-three-fiber";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Html } from "@react-three/drei";
 import { Navigate } from "react-router-dom";
 
 const InputScene = () => {
   const inputRef = useRef();
+  const [code, setCode] = useState("");
 
   const handleInputChange = (e) => {
-    console.log(e.target.value);
+    setCode(e.target.value);
   };
 
-  // const handleButtonClick = () => {
-  //     localStorage.setItem("code", code);
-  //     Navigate("/codefloat", {state: {code}});
-  // }
+  const handleButtonClick = () => {
+    localStorage.setItem("code", code);
+    Navigate("/codefloat", { state: { code } });
+  };
 
   return (
-    // <Canvas>
     <mesh>
       <Html center>
-        <div>
+        <div style={{ textAlign: "center" }}>
           <input
             ref={inputRef}
             type="text"
@@ -30,11 +30,26 @@ const InputScene = () => {
               border: "1px solid #ccc",
               borderRadius: "5px",
             }}
+            value={code}
           />
+          <button
+            onClick={handleButtonClick}
+            style={{
+              padding: "10px",
+              fontSize: "16px",
+              cursor: "pointer",
+              border: "none",
+              background: "#3498db",
+              color: "white",
+              borderRadius: "5px",
+              margin: "30px 0",
+            }}
+          >
+            Start
+          </button>
         </div>
       </Html>
     </mesh>
-    // </Canvas>
   );
 };
 
