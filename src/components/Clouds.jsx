@@ -30,25 +30,21 @@ export default function Clouds({ curveArray }) {
     (max, codeSnippet) => Math.max(max, codeSnippet.length),
     0
   );
-
-  codeRes.map((codeSnippet, idx) => {
+  return codeRes.map((codeSnippet, idx) => {
     const currentCurvePoint = curveArray[idx];
-
-    if (currentCurvePoint) {
-      return (
-        <CloudModel
-          key={idx}
-          color={setColor(codeSnippet.length, maxCodeLength)}
-          scale={THREE.MathUtils.randInt(1, 5)}
-          position={[
-            currentCurvePoint.x + THREE.MathUtils.randFloatSpread(20),
-            currentCurvePoint.y + THREE.MathUtils.randFloatSpread(20),
-            currentCurvePoint.z + THREE.MathUtils.randFloatSpread(20),
-          ]}
-        />
-      );
-    } else {
-      return null; // or another fallback, depending on your use case
-    }
+    const cloudColor = setColor(codeSnippet.length, maxCodeLength);
+    const cloudScale = THREE.MathUtils.randInt(1, 3);
+    return (
+      <CloudModel
+        key={idx}
+        color={cloudColor}
+        scale={cloudScale}
+        position={[
+          currentCurvePoint.x + THREE.MathUtils.randFloatSpread(20),
+          currentCurvePoint.y + THREE.MathUtils.randFloatSpread(20),
+          currentCurvePoint.z + THREE.MathUtils.randFloatSpread(20),
+        ]}
+      />
+    );
   });
 }
