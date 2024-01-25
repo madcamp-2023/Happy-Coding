@@ -84,7 +84,7 @@ Madcamp Week2 1분반
 ### 기능 설명
 pyautogui의 일부 기능을 손가락의 여러 동작들과 매핑하여 구현하였습니다.
 
-- mouse cerser: 검지 손가락
+- mouse cursor: 검지 손가락
 - click: 손가락 V 표시 작게
 - scroll-up: 손가락 V 표시 크게
 - scroll-down: 손가락 V 반대표시 크게
