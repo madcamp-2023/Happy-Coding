@@ -79,4 +79,4 @@ Madcamp Week2 1분반
 
 
 
-Backend : https://github.com/JWSH-MadCampWeek2/week2-backend.git
+Virtual Mouse : https://github.com/madcamp-2023/Virtual-Mouse.git
