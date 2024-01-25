@@ -1,4 +1,4 @@
-# Happy Coding with virtual mouse
+![code_float](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/f8f445d2-21a7-47e8-8dde-68e73570df37)# Happy Coding with virtual mouse
 
 
 # Happy Coding
@@ -46,8 +46,8 @@ Madcamp Week2 1분반
 -
 
 ## Source Code Submit
+![code_input](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/8a9045b1-600d-4a50-a260-8b1d829c8c9e)
 
-// 이미지
 
 ### Major Features
 
@@ -59,8 +59,8 @@ Madcamp Week2 1분반
 -
 
 ## Floating Sound
+![code_float](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/80f93cd3-5ea7-49d9-8b02-6aec4c857c7f)
 
-// 이미지
 
 ### Major Features
 
@@ -72,8 +72,8 @@ Madcamp Week2 1분반
 - 
 
 ## Flying through Clouds
+![code_atmos](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/b233d4d6-f35c-4790-82b1-472ff79c1433)
 
-// 이미지
 
 ### Major Features
 
