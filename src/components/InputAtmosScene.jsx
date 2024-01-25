@@ -1,13 +1,6 @@
-import {
-  Float,
-  OrbitControls,
-  PerspectiveCamera,
-  Text,
-} from "@react-three/drei";
+import { Float, OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { useThree } from "react-three-fiber";
-import InputScene from "./InputScene";
-import ButtonScene from "./ButtonScene";
 import CloudModel from "../models/CloudModel";
 
 const getRandomValue = (min, max) => {
@@ -59,7 +52,7 @@ const generateRandomClouds = (count) => {
 
 const LINE_NB_POINTS = 12000;
 
-export const Experience = () => {
+export default function InputAtmosScene() {
   const code = localStorage.getItem("code");
   const codeLines = code ? code.split("\n") : [];
   const codeRes = codeLines.map((line) => ({
@@ -100,4 +93,4 @@ export const Experience = () => {
       </group>
     </>
   );
-};
+}

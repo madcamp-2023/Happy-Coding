@@ -2,7 +2,7 @@ import { Float, Line, PerspectiveCamera, useScroll } from "@react-three/drei";
 import { Airplane } from "./Airplane";
 import * as THREE from "three";
 import React, { useMemo, useRef, useState, useEffect } from "react";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 import Clouds from "./Clouds";
 
 const LINE_NB_POINTS = 12000;
@@ -11,27 +11,35 @@ export default function AtmosScene() {
   const cameraGroup = useRef();
   const airplane = useRef();
   const scroll = useScroll();
+  const [curve, setCurve] = useState(null);
+  const [linePoints, setLinePoints] = useState([]);
+  const [curveArray, setCurveArray] = useState([]);
 
   const code = localStorage.getItem("code");
   const codeLines = code ? code.split("\n") : [];
   const totalLength = codeLines.length;
-  const curveArray = [];
-  for (let i = 0; i < totalLength; i++) {
-    const randomX = THREE.MathUtils.randFloatSpread(20);
-    const randomY = THREE.MathUtils.randFloatSpread(20);
-    curveArray.push(new THREE.Vector3(randomX, randomY, i * -10));
-  }
 
-  const curve = useMemo(() => {
-    return new THREE.CatmullRomCurve3(curveArray, false, "catmullrom", 0.5);
-  }, []);
+  useEffect(() => {
+    const newCurveArray = [];
+    for (let i = 0; i < totalLength; i++) {
+      const randomX = THREE.MathUtils.randFloatSpread(20);
+      const randomY = THREE.MathUtils.randFloatSpread(20);
+      newCurveArray.push(new THREE.Vector3(randomX, randomY, i * -10));
+    }
+    setCurveArray(newCurveArray);
+    setCurve(
+      new THREE.CatmullRomCurve3(newCurveArray, false, "catmullrom", 0.5)
+    );
+  }, [totalLength]);
 
-  const linePoints = useMemo(() => {
-    return curve.getPoints(LINE_NB_POINTS);
+  useEffect(() => {
+    if (curve) {
+      setLinePoints(curve.getPoints(LINE_NB_POINTS));
+    }
   }, [curve]);
 
-  useFrame((_state, delta) => {
-    if (curveArray.length > 0) {
+  useFrame((state, delta) => {
+    if (curveArray.length > 0 && curve && linePoints.length > 0) {
       const curPointIndex = Math.min(
         Math.round(scroll.offset * linePoints.length),
         linePoints.length - 1
@@ -40,30 +48,32 @@ export default function AtmosScene() {
       const pointAhead =
         linePoints[Math.min(curPointIndex + 1, linePoints.length - 1)];
 
-      const xDisplacement = (pointAhead.x - curPoint.x) * 80;
+      if (curPoint && pointAhead) {
+        const xDisplacement = (pointAhead.x - curPoint.x) * 80;
+        const angleRotation =
+          (xDisplacement < 0 ? 1 : -1) *
+          Math.min(Math.abs(xDisplacement), Math.PI / 3);
 
-      const angleRotation =
-        (xDisplacement < 0 ? 1 : -1) *
-        Math.min(Math.abs(xDisplacement), Math.PI / 3);
-      const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(
-          airplane.current.rotation.x,
-          airplane.current.rotation.y,
-          angleRotation
-        )
-      );
+        const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(
+            airplane.current.rotation.x,
+            airplane.current.rotation.y,
+            angleRotation
+          )
+        );
 
-      const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(
-          cameraGroup.current.rotation.x,
-          angleRotation,
-          cameraGroup.current.rotation.z
-        )
-      );
+        const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
+          new THREE.Euler(
+            cameraGroup.current.rotation.x,
+            angleRotation,
+            cameraGroup.current.rotation.z
+          )
+        );
 
-      airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
-      cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
-      cameraGroup.current.position.lerp(curPoint, delta * 24);
+        airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
+        cameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
+        cameraGroup.current.position.lerp(curPoint, delta * 24);
+      }
     }
   });
 
@@ -99,7 +109,7 @@ export default function AtmosScene() {
           />
         )}
       </group>
-      <Clouds curveArray={curveArray} />
+      {curveArray.length > 0 && <Clouds curveArray={curveArray} />}
     </>
   );
 }
