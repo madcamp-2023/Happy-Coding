@@ -79,7 +79,7 @@ Virtual Mouse : https://github.com/madcamp-2023/Virtual-Mouse.git
 ![free_atmos (1)](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/19c63a8a-3028-4685-92e4-79d9997abd29)
 
 - 비행기를 통해 무작위로 생성된 구름 사이를 날 수 있습니다.
-- 사용잔는 마우스를 따라 비행기의 비행 경로를 조절할 수 있습니다.
+- 사용자는 마우스를 따라 비행기의 비행 경로를 조절할 수 있습니다.
 
 ## Rolling Balls
 ![code_ball](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/8bcae08a-7696-491a-8a1d-36b031bc84f6)
