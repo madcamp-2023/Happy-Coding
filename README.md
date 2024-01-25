@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Happy Coding with virtual mouse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Happy Coding
 
-In the project directory, you can run:
+## 소스코드를 시각, 청각적으로 볼 수 있는 Happy Coding의 경험을 제공합니다.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### a. 개발 팀원
 
-### `npm run build`
+Madcamp Week2 1분반
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 김윤서 - 고려대학교 컴퓨터학과
+- 안시현 - KAIST 전기및전자공학부
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### b. 개발 환경
 
-### `npm run eject`
+- Language : React, python
+- OS : Web
+- IDE : Visual Studio Code
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### c. 어플리케이션 소개
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Virtual Mouse
+// 이미지
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Major Features
 
-## Learn More
+- 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 기술 설명
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-
 
-### Code Splitting
+## Floating Sound
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+// 이미지
 
-### Analyzing the Bundle Size
+### Major Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 
 
-### Making a Progressive Web App
+### 기술 설명
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 
 
-### Advanced Configuration
+## Flying through Clouds
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+// 이미지
 
-### Deployment
+### Major Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- 
 
-### `npm run build` fails to minify
+### 기술 설명
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 
+
+## Rolling Balls
+
+// 이미지
+
+### Major Features
+
+- 
+
+### 기술 설명
+
+- 
+
+
+
+Backend : https://github.com/JWSH-MadCampWeek2/week2-backend.git
