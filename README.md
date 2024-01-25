@@ -33,17 +33,21 @@ Madcamp Week2 1분반
 ### c. 어플리케이션 소개
 
 ## Virtual Mouse
-// 이미지
-
 ### Major Features
 
 - media-pipe를 통해 사용자 손 이미지로부터 각 관절을 인식하고 이를 좌표값으로 반환합니다.
 - 좌표값 사이의 관계를 계산하여 여러가지 손동작과 마우스 및 키보드 이벤트에 매핑합니다.
 
   
-### 기술 설명
+### 기능 설명
+pyautogui의 일부 기능을 손가락의 여러 동작들과 매핑하여 구현하였습니다.
 
--
+- mouse cerser: 검지 손가락
+- click: 손가락 V 표시 작게
+- scroll-up: 손가락 V 표시 크게
+- scroll-down: 손가락 V 반대표시 크게
+- space: 손가락 펼치기
+
 
 ## Source Code Submit
 ![code_input](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/8a9045b1-600d-4a50-a260-8b1d829c8c9e)
