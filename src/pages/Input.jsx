@@ -3,7 +3,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import styles from "./Input.module.css";
+import "./Input.css";
+import Atmos from "./Atmos";
 
 export default function Input() {
   const [code, setCode] = useState("");
@@ -19,30 +20,33 @@ export default function Input() {
   };
 
   return (
-    <div className={styles.Input}>
-      <div className={styles.InputContainer}>
-        <Typography variant="h1" gutterBottom>
-          Hello, World!
-        </Typography>
-        <div className={styles.UIContainer}>
-          <TextField
-            className={styles.TextField}
-            label="Your Source Code"
-            multiline
-            fullWidth
-            maxRows={10}
-            value={code}
-            onChange={handleCodeChange}
-          />
-          <Button
-            className={styles.Button}
-            variant="outlined"
-            onClick={handleButtonClick}
-          >
-            Start
-          </Button>
+    <div>
+      <div className="Input">
+        <div className="InputContainer">
+          <Typography variant="h1" gutterBottom>
+            Happy Coding!
+          </Typography>
+          <div className="UIContainer">
+            <TextField
+              className="TextField"
+              label="Your Source Code"
+              multiline
+              fullWidth
+              maxRows={10}
+              value={code}
+              onChange={handleCodeChange}
+            />
+            <Button
+              className="Button"
+              variant="contained"
+              onClick={handleButtonClick}
+            >
+              Start
+            </Button>
+          </div>
         </div>
       </div>
+      <Atmos />
     </div>
   );
 }
