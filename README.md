@@ -71,11 +71,12 @@ Madcamp Week2 1분반
 
 - 
 
-## Flying through Clouds
-![free_atmos (1)](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/19c63a8a-3028-4685-92e4-79d9997abd29)
-
+## Flying through Clouds (1)
 ![code_atmos](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/b233d4d6-f35c-4790-82b1-472ff79c1433)
 
+
+## FLying through Clouds (2)
+![free_atmos (1)](https://github.com/madcamp-2023/Happy-Coding/assets/94510731/19c63a8a-3028-4685-92e4-79d9997abd29)
 
 ### Major Features
 
