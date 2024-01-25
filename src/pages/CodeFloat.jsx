@@ -1,6 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, OrbitControls, Line } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  ScrollControls,
+  useScroll,
+  Line,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import CodeColumn from "../components/CodeColumn";
 import { NoteHigh, Note4, Note8 } from "../models/MusicalNote";
 import * as THREE from "three";
@@ -9,21 +16,27 @@ import styles from "./CodeFloat.module.css";
 
 function Scene() {
   const [code, setCode] = useState(null);
-  const cameraPosition = new THREE.Vector3(0, 0, 50);
-  const scroll =
-    -window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  const [totalLength, setTotalLength] = useState(0);
+  const cameraRef = useRef();
+  const scroll = useScroll();
 
   // fetch code from localStorage
   useEffect(() => {
     const storedCode = localStorage.getItem("code");
     if (storedCode) {
       setCode(storedCode);
+      setTotalLength(storedCode.split("\n").length);
     }
   }, []);
 
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(
-      [new THREE.Vector3(0, 0, 50), new THREE.Vector3(1000, 0, 50)],
+      [
+        new THREE.Vector3(0, 0, 100),
+        new THREE.Vector3(totalLength, 5, 100),
+        new THREE.Vector3(totalLength * 1.5, -5, 100),
+        new THREE.Vector3(totalLength * 2, 0, 100),
+      ],
       false,
       "catmullrom",
       0.5
@@ -31,25 +44,27 @@ function Scene() {
   }, []);
 
   const linePoints = useMemo(() => {
-    return curve.getPoints(4000);
+    return curve.getPoints(2000);
   }, [curve]);
 
-  useFrame((_state, delta) => {
+  useFrame((state, delta) => {
     const curPointIndex = Math.min(
-      Math.round(scroll * (linePoints.length - 1)),
+      Math.round(scroll.offset * linePoints.length),
       linePoints.length - 1
     );
     const curPoint = linePoints[curPointIndex];
-    cameraPosition.lerp(curPoint, delta * 24);
+    cameraRef.current.position.lerp(curPoint, delta * 24);
   });
 
   return (
     <group>
-      <perspectiveCamera
-        position={cameraPosition}
+      <PerspectiveCamera
+        position={[0, 0, 100]}
         near={0.1}
         far={1000}
         aspect={window.innerWidth / window.innerHeight}
+        makeDefault
+        ref={cameraRef}
       />
       <CodeColumn code={code} />
       <NoteHigh position={[150, 80, -80]} rotation={[0, 1, 0]} />
@@ -77,12 +92,13 @@ export default function CodeFloat() {
       <div className={styles.SideNavigationOverlay}>
         <SideNavigation before={"/codeball"} next={"/codeatmos"} />
       </div>
-      <Canvas camera={{ position: [0, 0, 50], near: 0.1, far: 1000 }}>
+      <Canvas camera={{ position: [0, 0, 100], near: 0.1, far: 1000 }}>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <Environment background preset="dawn" blur={0.8} />
-        <Scene />
-        <OrbitControls />
+        <ScrollControls pages={6} damping={0.3}>
+          <Scene />
+        </ScrollControls>
       </Canvas>
     </div>
   );
