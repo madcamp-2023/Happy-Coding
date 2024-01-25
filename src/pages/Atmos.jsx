@@ -11,9 +11,9 @@ export default function Atmos() {
         >
             {/* <color attach="background" args={["ececec"]} /> */}
             <Environment background preset = "dawn" blur={0.8} /> 
-            <ScrollControls pages={6} damping = {0.3}>
+            {/* <ScrollControls pages={6} damping = {0.3}> */}
             <Experience />
-            </ScrollControls>
+            {/* </ScrollControls> */}
         </Canvas>
         </>
     )
