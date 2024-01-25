@@ -9,7 +9,11 @@ export default function CodeAtmos() {
   return (
     <div>
       <div className={styles.SideNavigationOverlay}>
-        <SideNavigation before={"/codefloat"} next={"/codeball"} />
+        <SideNavigation
+          before={"/codefloat"}
+          next={"/codeball"}
+          curMode="path"
+        />
       </div>
       <Canvas>
         <Environment background preset="dawn" blur={0.8} />
