@@ -25,21 +25,6 @@ export default function AtmosScene() {
     curveArray.push(new THREE.Vector3(randomX, randomY, i * -10));
   }
 
-  //   useEffect(() => {
-
-  // setCurveArray(newCurveArray);
-
-  // Update linePoints here
-  // setLinePoints(
-  //   newCurveArray.length > 0
-  //     ? newCurveArray.reduce((points, point) => points.concat(point), [])
-  //     : []
-  // );
-
-  // Set loading to false after curveArray is prepared
-  //     setLoading(false);
-  //   }, [codeLines]);
-  //   console.log(curveArray);
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(curveArray, false, "catmullrom", 0.5);
   }, []);
@@ -98,7 +83,14 @@ export default function AtmosScene() {
       ) : ( */}
       <>
         <group ref={cameraGroup}>
-          <PerspectiveCamera position={[0, 0, 7]} fov={30} makeDefault />
+          <PerspectiveCamera
+            position={[0, 0, 7]}
+            fov={30}
+            near={0.1}
+            far={1000}
+            aspect={window.innerWidth / window.innerHeight}
+            makeDefault
+          />
           <group ref={airplane}>
             <Float floatIntensity={2} speed={2}>
               <Airplane

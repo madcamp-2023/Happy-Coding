@@ -1,6 +1,6 @@
 import React from "react";
 import { Canvas } from "react-three-fiber";
-import { Environment, ScrollControls } from "@react-three/drei";
+import { Environment, ScrollControls, OrbitControls } from "@react-three/drei";
 import AtmosScene from "../components/AtmosScene";
 import styles from "./CodeAtmos.module.css";
 import SideNavigation from "../components/SideNavigation";
